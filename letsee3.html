@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>LUNARIS</title>
+  <link rel="icon" type="image/x-icon" href="C:\Users\hp\Arunima\Lunariscr.png">
+  <style>
+    body {
+      background-color: #121212;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 50px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    body.fade-in {
+      opacity: 1;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #1DB954;
+      font-family: cursive;
+    }
+
+    #search-bar {
+      width: 100%;
+      max-width: 500px;
+      padding: 10px 15px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      margin-bottom: 30px;
+      outline: none;
+      background-color: #1e1e1e;
+      color: white;
+    }
+
+    .playlist {
+      display: flex;
+      width: 100%;
+      max-width: 500px;
+      height: 100px;
+      margin: 15px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      background-color: #1e1e1e;
+      text-decoration: none;
+      color: white;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .playlist:hover {
+      transform: scale(1.03);
+      background-color: #272727;
+    }
+
+    .playlist-image {
+      width: 40%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .playlist-info {
+      width: 60%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 20px;
+      font-size: 18px;
+      font-weight: bold;
+      font-family: cursive;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+#splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0f0f0f;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.8s ease;
+}
+
+.splash-logo {
+  width: 120px; /* Adjust size as needed */
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.splash-name {
+  font-size: 32px;
+  color: white;
+  font-family: cursive;
+}
+
+  </style>
+<style>
+  #branding {
+    position: fixed;
+    top: 0;
+    left: 90%;
+    transform: translateX(-50%);
+    background-color: #1e1e1e;
+    padding: 20px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 10000; /* very high so it stays on top */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.7);
+    width: max-content;
+    border-radius: 0 0 15px 15px;
+  }
+
+  #branding .logo {
+    height: 77px;
+
+}
+
+  }
+
+  /* Add some top padding to your body or main container so content won't be hidden under the fixed header */
+  body {
+    padding-top: 70px; /* adjust this height according to your header */
+  }
+#site-logo {
+  display: none;           /* Hide completely */
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  align-items: center;
+  gap: 10px;
+  font-family: cursive;
+  color: white;
+  font-size: 20px;
+  z-index: 1000;
+}
+
+</style>
+</head>
+<body>
+<body>
+ <div id="splash-screen">
+  <img src="C:\Users\hp\Arunima\Lunariscr.png" alt="Lunaris Logo" class="splash-logo">
+  
+</div>
+<header id="branding">
+    <img src="C:\Users\hp\Arunima\Lunariscr.png" alt="Lunaris Logo" class="logo" />
+  </header>
+
+  <!-- Rest of your page here -->
+</body>
+
+
+  <h1>All Playlists</h1>
+
+  <input type="text" id="search-bar" placeholder="Search playlists..." onkeyup="filterPlaylists()" />
+
+  <a class="playlist" href="file:///C:/Users/hp/Arunima/letsee2.html">
+    <div class="playlist-image" style="background-image: url('https://i.pinimg.com/736x/00/1e/03/001e03dfba1dfec9999774643eab676d.jpg');"></div>
+    <div class="playlist-info">Thai OST</div>
+  </a>
+
+  <a class="playlist" href="#">
+    <div class="playlist-image" style="background-image: url('https://i.pinimg.com/736x/53/c6/1c/53c61c44e566e706f462ef6d20fcdd46.jpg');"></div>
+    <div class="playlist-info">TPop</div>
+  </a>
+
+  <a class="playlist" href="#">
+    <div class="playlist-image" style="background-image: url('https://i.pinimg.com/736x/29/1b/41/291b4119f1df435c5f9f59109e52b86f.jpg');"></div>
+    <div class="playlist-info">Kor OST</div>
+  </a>
+
+  <a class="playlist" href="file:///C:/Users/hp/Arunima/letsee5.html">
+    <div class="playlist-image" style="background-image: url('https://i.pinimg.com/736x/1b/a3/88/1ba388315d9453cea12078048838fbeb.jpg');"></div>
+    <div class="playlist-info">KPop</div>
+  </a>
+
+  <a class="playlist" href="#">
+    <div class="playlist-image" style="background-image: url('https://i.pinimg.com/736x/7c/44/d6/7c44d609adc7696c3e3219e30252f927.jpg');"></div>
+    <div class="playlist-info">Chin OST</div>
+  </a>
+
+  <a class="playlist" href="#">
+    <div class="playlist-image" style="background-image: url('https://i.pinimg.com/736x/e0/91/9c/e0919c773a2750351b12daa8d25c1b6d.jpg');"></div>
+    <div class="playlist-info">CPop</div>
+  </a>
+
+  <a class="playlist" href="#">
+    <div class="playlist-image" style="background-image: url('https://i.pinimg.com/736x/5c/98/58/5c9858ff50aacef76baa564d2cc6c0cf.jpg');"></div>
+    <div class="playlist-info">Pop</div>
+  </a>
+
+  <a class="playlist" href="#">
+    <div class="playlist-image" style="background-image: url('https://i.pinimg.com/736x/16/93/a2/1693a219736332aaabbe354552cd386d.jpg');"></div>
+    <div class="playlist-info">Bollywood</div>
+  </a>
+
+  <script>
+    window.onload = () => {
+      document.body.classList.add('fade-in');
+    };
+
+    function filterPlaylists() {
+      const input = document.getElementById('search-bar').value.toLowerCase();
+      const playlists = document.getElementsByClassName('playlist');
+
+      for (let i = 0; i < playlists.length; i++) {
+        const name = playlists[i].querySelector('.playlist-info').textContent.toLowerCase();
+        if (name.includes(input)) {
+          playlists[i].classList.remove('hidden');
+        } else {
+          playlists[i].classList.add('hidden');
+        }
+      }
+    }
+  </script>
+<script>
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const splash = document.getElementById('splash-screen');
+      const logo = document.getElementById('site-logo');
+
+      splash.style.opacity = 0;
+
+      setTimeout(() => {
+        splash.style.display = 'none';
+        logo.style.display = 'flex';   // Only show logo now
+      }, 800); // after fade-out
+    }, 1000); // splash stays for 1 sec
+  });
+</script>
+
+</body>
+</html>
