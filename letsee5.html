@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>KPop</title>
+  <link rel="icon" type="image/x-icon" href="C:\Users\hp\Arunima\Lunariscr.png">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0f0f0f;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 40px 20px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    body.fade-in {
+      opacity: 1;
+    }
+
+    .view {
+      max-width: 600px;
+      width: 100%;
+      transition: all 0.5s ease;
+      opacity: 0;
+      transform: translateY(30px);
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+
+    .view.show {
+      opacity: 1;
+      transform: translateY(0);
+      position: relative;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #1db954;
+      font-family: cursive;
+    }
+
+    .song {
+      background: #1e1e1e;
+      margin: 15px 0;
+      padding: 15px 20px;
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s;
+    }
+
+    .song:hover {
+      transform: scale(1.02);
+    }
+
+    .song img {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+      object-fit: cover;
+      margin-right: 15px;
+    }
+
+    .song-text {
+      flex: 1;
+      text-align: left;
+      margin-right: 15px;
+    }
+
+    .song-title {
+      font-size: 18px;
+      color: white;
+      font-weight: bold;
+      font-family: cursive;
+    }
+
+    .artist-name {
+      color: #ccc;
+      font-size: 14px;
+      font-style: italic;
+      margin-top: 5px;
+    }
+
+    button {
+      background-color: #1db954;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #1ed760;
+    }
+
+    .fade-out {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    @media (max-width: 600px) {
+      .song-text {
+        text-align: left;
+        margin-left: 10px;
+      }
+    }
+
+    .back-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background-color: #555;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-family: cursive;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      transition: background-color 0.3s ease;
+      z-index: 1000;
+    }
+
+    .back-btn:hover {
+      background-color: #1DB954;
+    }
+
+    #searchInput {
+      width: 100%;
+      max-width: 600px;
+      padding: 10px 15px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      margin: 20px auto 30px;
+      display: block;
+      outline: none;
+      background-color: #1e1e1e;
+      color: white;
+    }
+  </style>
+<style>
+  .play-all-btn {
+    background-color: #1db954;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: cursive;
+    margin-top: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    transition: background-color 0.3s ease;
+  }
+
+  .play-all-btn:hover {
+    background-color: #1ed760;
+  }
+</style>
+<style>
+  #branding {
+    position: fixed;
+    top: 0;
+    left: 90%;
+    transform: translateX(-50%);
+    background-color: #1e1e1e;
+    padding: 20px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 10000; /* very high so it stays on top */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.7);
+    width: max-content;
+    border-radius: 0 0 15px 15px;
+  }
+
+  #branding .logo {
+    height: 77px;
+  }
+
+  /* Add some top padding to your body or main container so content won't be hidden under the fixed header */
+  body {
+    padding-top: 70px; /* adjust this height according to your header */
+  }
+</style>
+</head>
+<body>
+<header id="branding">
+    <img src="C:\Users\hp\Arunima\Lunariscr.png" alt="Lunaris Logo" class="logo" />
+  </header>
+
+<button class="back-btn" onclick="goBack()">All Playlists</button>
+
+<!-- Playlist View -->
+<div id="playlistView" class="view show">
+ <h2>KPop</h2>
+  <!-- Search Bar INSIDE the .view container -->
+  <input
+    type="text"
+    id="searchInput"
+    placeholder="Search songs..."
+    onkeyup="filterSongs()"
+  />
+<button class="play-all-btn" onclick="playAll()">▶ Play All</button>
+
+
+
+    <div class="song">
+      <img src="https://i.pinimg.com/736x/31/79/ce/3179ce3f4ee5fc5ce5c1d6925310c615.jpg" alt="Album Art">
+      <div class="song-text">
+        <div class="song-title">Always</div>
+        <div class="artist-name">Zhang Hao</div>
+      </div>
+      <button onclick="window.location.href='file:///C:/Users/hp/Arunima/letsee4.html?index=0'">►</button>
+    </div>
+
+    <div class="song">
+      <img src="https://i.pinimg.com/736x/d0/c1/d2/d0c1d25ec25c8fa1cdedb67be3a532e0.jpg" alt="Album Art">
+      <div class="song-text">
+        <div class="song-title">Moonstruck</div>
+        <div class="artist-name">Enhypen</div>
+      </div>
+      <button onclick="window.location.href='file:///C:/Users/hp/Arunima/letsee4.html?index=1'">►</button>
+    </div>
+
+    <div class="song">
+      <img src="https://i.pinimg.com/736x/85/c7/6d/85c76d13de940cda0084d97a527fb357.jpg" alt="Album Art">
+      <div class="song-text">
+        <div class="song-title">I Don't Understand But I Love You</div>
+        <div class="artist-name">Seventeen (Performance Unit)</div>
+      </div>
+      <button onclick="window.location.href='file:///C:/Users/hp/Arunima/letsee4.html?index=2'">►</button>
+    </div>
+ 
+
+<div class="song">
+      <img src="https://i.pinimg.com/736x/da/7e/03/da7e03f46907208d7802c912b63fb017.jpg" alt="Album Art">
+      <div class="song-text">
+        <div class="song-title">Cinema Paradise</div>
+        <div class="artist-name">Zerobaseone</div>
+      </div>
+      <button onclick="window.location.href='file:///C:/Users/hp/Arunima/letsee4.html?index=3'">►</button>
+    </div>
+  </div>
+
+  <script>
+    function goBack() {
+      window.location.href = 'file:///C:/Users/hp/Arunima/letsee3.html';
+    }
+
+    function filterSongs() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const songs = document.querySelectorAll('.song');
+
+      songs.forEach(song => {
+        const title = song.querySelector('.song-title').textContent.toLowerCase();
+        const artist = song.querySelector('.artist-name').textContent.toLowerCase();
+
+        if (title.includes(input) || artist.includes(input)) {
+          song.style.display = 'flex';
+        } else {
+          song.style.display = 'none';
+        }
+      });
+    }
+
+    window.onload = () => {
+      document.body.classList.add('fade-in');
+    };
+  </script>
+
+<script>
+  function playAll() {
+    // Redirect to the player page with playAll=true
+    window.location.href = 'file:///C:/Users/hp/Arunima/letsee4.html?playAll=true&index=0';
+  }
+</script>
+
+</body>
+</html>
